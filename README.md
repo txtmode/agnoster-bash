@@ -9,8 +9,9 @@ https://gist.github.com/kruton/8345450
 
 Updated & fixed by Hanish K H on oct-05-2017
 
-# UPDATE
-Fixed the virtualenv prompt in bash
+# ADDITIONS OF THIS FORK
+* Current Kubernetes context
+* Current active Azure subscription
 
 # README
 
@@ -34,7 +35,7 @@ I recommend the following:
 ```
 cd $HOME
 mkdir -p .bash/themes/agnoster-bash
-git clone https://github.com/speedenator/agnoster-bash.git .bash/themes/agnoster-bash
+git clone https://github.com/txtmode/agnoster-bash.git .bash/themes/agnoster-bash
 ```
 
 then add the following to your .bashrc:

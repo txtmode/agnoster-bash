@@ -214,6 +214,23 @@ prompt_virtualenv() {
     fi
 }
 
+### kubernetes prompt
+prompt_kubernetes() {
+	  if [[ $(which kubectl) ]]; then
+	      color=orange
+				prompt_segment $color white "☸ $(kubectl config current-context | sed 's/^aks-//' | sed 's/-admin$//' )"
+	  fi 
+}
+
+### Azure prompt
+prompt_azure() {
+	  if [ -e $HOME/.azure/azureProfile.json ]; then
+	      color=blue
+				prompt_segment $color white "𝔸 $(cat $HOME/.azure/azureProfile.json | jq -r '.subscriptions[] | select(.isDefault==true) | .name')"
+	  fi 
+}
+
+
 
 ### Prompt components
 # Each component will draw itself, and hide itself if no information needs to be shown
@@ -301,7 +318,8 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-    prompt_segment blue black '\w'
+    #prompt_segment blue black '\w'
+		prompt_segment blue black "$(dirs +0)"
 }
 
 # Status:
@@ -442,6 +460,8 @@ build_prompt() {
     [[ -z ${AG_NO_CONTEXT+x} ]] && prompt_context
     prompt_virtualenv
     prompt_dir
+		prompt_kubernetes
+		prompt_azure
     prompt_git
     prompt_hg
     prompt_end
